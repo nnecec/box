@@ -1,0 +1,12 @@
+*.log
+.DS_Store
+node_modules
+.cache
+dist
+
+**/*/dist
+**/*/.cache
+**/*/.parcel-cache
+
+package-lock.json
+yarn.lock

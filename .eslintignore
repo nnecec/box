@@ -1,0 +1,12 @@
+node_modules
+lib
+dist
+build
+coverage
+expected
+website
+gh-pages
+docs
+demo
+
+**/example

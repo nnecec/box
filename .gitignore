@@ -1,0 +1,11 @@
+node_modules/
+packages/**/build
+packages/**/dist
+packages/**/coverage
+packages/**/dist
+
+**/yarn.lock
+
+**/package-lock.json
+**/yarn-error.log
+**/example/node_modules

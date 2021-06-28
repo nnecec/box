@@ -1,0 +1,42 @@
+{
+  "name": "@nnecec/search-box",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "nnecec",
+  "main": "dist/index.js",
+  "module": "dist/search-box.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsdx build",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "start": "tsdx watch",
+    "test": "tsdx test",
+    "test:coverage": "tsdx test --coverage"
+  },
+  "dependencies": {
+    "@nnecec/search-box-core": "^0.1.0",
+    "lodash-es": "^4.17.21",
+    "react-is": "^17.0.0"
+  },
+  "devDependencies": {
+    "react-sortablejs": "^6.0.0",
+    "sortablejs": "^1.13.0",
+    "tsdx": "^0.14.1"
+  },
+  "peerDependencies": {
+    "@ant-design/icons": ">=4",
+    "@formily/antd": ">=1",
+    "@formily/antd-components": ">=1",
+    "antd": ">=4",
+    "react": ">=16"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "gitHead": "e43eb38ce56bc25040384c389a16170b462fb12c"
+}
