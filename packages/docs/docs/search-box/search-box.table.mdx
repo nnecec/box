@@ -1,0 +1,42 @@
+---
+title: Table
+sidebar_label: SearchBox.Table
+sidebar_position: 2.1
+---
+
+import { SearchBox } from '@nnecec/search-box'
+
+export const columns = [{
+  dataIndex: 'id',
+  title: 'ID'
+}, {
+  dataIndex: 'name',
+  title: '名称'
+}, {
+  dataIndex: 'status',
+  title: '状态'
+}, ]
+
+# SearchBox.Table
+
+## Usage
+
+<SearchBox
+  onSearch={values => console.log(values)}
+  name="your-module-name"
+>
+  <SearchBox.Table
+    columns={columns}
+    dataSource={[]}
+    pagination={{
+      total: 100
+    }}
+  />
+</SearchBox>
+
+## SchemaForm API
+
+| 参数    | 说明         | 类型                               | 默认值 |
+| ------- | ------------ | ---------------------------------- | ------ |
+| name    | field name   | `string`                           | -      |
+| configs | tabs options | `{label: string, value: string}[]` | -      |

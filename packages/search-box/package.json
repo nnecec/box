@@ -21,11 +21,11 @@
   "dependencies": {
     "@nnecec/search-box-core": "^0.1.0",
     "lodash-es": "^4.17.21",
-    "react-is": "^17.0.0"
+    "react-is": "^17.0.0",
+    "react-sortablejs": "^6.0.0",
+    "sortablejs": "^1.13.0"
   },
   "devDependencies": {
-    "react-sortablejs": "^6.0.0",
-    "sortablejs": "^1.13.0",
     "tsdx": "^0.14.1"
   },
   "peerDependencies": {

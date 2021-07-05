@@ -2,11 +2,11 @@
 sidebar_position: 1
 ---
 
-# Search Box
+# Intro
 
 Query and enhance its results tools all in one.
 
-## Getting Started
+## Installation
 
 ```shell
 npm i @nnecec/search-box

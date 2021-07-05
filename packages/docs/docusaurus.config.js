@@ -1,19 +1,19 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'search-box',
-  tagline: 'Query and enhance its results tools all in one.',
-  url: 'https://github.com/nnecec/search-box',
+  title: 'Box',
+  tagline: 'Use box anywhere.',
+  url: 'https://github.com/nnecec/box',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'nnecec', // Usually your GitHub org/user name.
-  projectName: 'search-box', // Usually your repo name.
+  projectName: 'box', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'search-box',
+      title: 'box',
       logo: {
-        alt: 'search-box-logo',
+        alt: 'box-logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -23,7 +23,7 @@ module.exports = {
           position: 'left',
           label: 'Docs',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/nnecec/search-box',
           label: 'GitHub',
@@ -52,7 +52,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/nnecec/search-box',
+              href: 'https://github.com/nnecec/box',
             },
           ],
         },

@@ -1,0 +1,25 @@
+---
+title: SchemaForm
+sidebar_label: SearchBox.SchemaForm
+sidebar_position: 2.1
+---
+
+import { SearchBox } from '@nnecec/search-box'
+
+# SearchBox.SchemaForm
+
+## Usage
+
+<SearchBox
+  onSearch={values => console.log(values)}
+  name="your-module-name"
+>
+  <SearchBox.SchemaForm schema={{}} />
+</SearchBox>
+
+
+## SchemaForm API
+
+| 参数   | 说明           | 类型            | 默认值 |
+| ------ | -------------- | --------------- | ------ |
+| schema | Formily schema | `FormilySchema` | -      |

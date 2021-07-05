@@ -1,0 +1,27 @@
+---
+title: Tabs
+sidebar_label: SearchBox.Tabs
+sidebar_position: 2.1
+---
+
+import { SearchBox } from '@nnecec/search-box'
+
+export const configs = [{label: '已读',value: '1',default: true},{label: '未读',value: '0'}]
+
+# SearchBox.Tabs
+
+## Usage
+
+<SearchBox
+  onSearch={values => console.log(values)}
+  name="your-module-name"
+>
+  <SearchBox.Tabs name="status" configs={configs} />
+</SearchBox>
+
+## SchemaForm API
+
+| 参数    | 说明         | 类型                               | 默认值 |
+| ------- | ------------ | ---------------------------------- | ------ |
+| name    | field name   | `string`                           | -      |
+| configs | tabs options | `{label: string, value: string}[]` | -      |
