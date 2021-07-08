@@ -17,7 +17,7 @@ interface ToolbarProps<RecordType> {
   store: TableStore
 }
 
-export const Toolbar = observer(<RecordType extends object=any> (props: ToolbarProps<RecordType>) => {
+export const Toolbar = observer(<RecordType extends object = any>(props: ToolbarProps<RecordType>) => {
   const { title, store } = props
 
   function splitColumns () {
@@ -160,13 +160,9 @@ export const Toolbar = observer(<RecordType extends object=any> (props: ToolbarP
     form.setFieldsValue(defaultTableConfig)
   }
   const handleValuesChange = (_, values) => {
-    const { scroll, ...rest } = values
-
+    console.log(values)
     const params = {
-      scroll: {
-        x: scroll ? 'max-content' : false
-      },
-      ...rest
+      ...values
     }
     store.setTableConfig(params)
   }
@@ -179,7 +175,16 @@ export const Toolbar = observer(<RecordType extends object=any> (props: ToolbarP
       initialValues={store.tableConfig}
       onValuesChange={handleValuesChange}
     >
-      <Form.Item name="scroll" label="滚动" valuePropName="checked">
+      <Form.Item
+        name="scroll"
+        label="滚动"
+        valuePropName="checked"
+        getValueProps={(value) => {
+          console.log(value, 'max-content')
+          return { checked: value?.x === 'max-content' }
+        }}
+        getValueFromEvent={e => e ? { x: 'max-content' } : { x: false }}
+      >
         <Switch />
       </Form.Item>
       <Form.Item name="size" label="尺寸">

@@ -25,9 +25,7 @@ export const Form: React.FC<FormProps> = observer((props) => {
   const { getParams, setParams, search } = searchBoxInstance
   const params = getParams()
 
-  const AntForm = AntdForm.useForm()
-
-  const [form] = externalForm ? [externalForm] : AntForm
+  const [form] = AntdForm.useForm(externalForm)
 
   useInitial(() => {
     form.setFieldsValue(params)
@@ -61,12 +59,8 @@ export const Form: React.FC<FormProps> = observer((props) => {
 
         <Row justify="end">
           <Space align="end">
-            <Button htmlType="button" onClick={handleReset}>
-              还原
-            </Button>
-            <Button type="primary" htmlType="submit">
-              查询
-            </Button>
+            <Button htmlType="button" onClick={handleReset}>重置</Button>
+            <Button type="primary" htmlType="submit">查询</Button>
           </Space>
         </Row>
       </AntdForm>

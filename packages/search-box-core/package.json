@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "nnecec",
   "main": "dist/index.js",
-  "module": "dist/box-core.esm.js",
+  "module": "dist/search-box-core.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",

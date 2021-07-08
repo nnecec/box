@@ -23,15 +23,16 @@
     "lodash-es": "^4.17.21",
     "react-is": "^17.0.0",
     "react-sortablejs": "^6.0.0",
-    "sortablejs": "^1.13.0"
+    "sortablejs": "^1.14.0"
   },
   "devDependencies": {
     "tsdx": "^0.14.1"
   },
   "peerDependencies": {
     "@ant-design/icons": ">=4",
-    "@formily/antd": ">=1",
-    "@formily/antd-components": ">=1",
+    "@formily/antd": ">=2",
+    "@formily/core": ">=2",
+    "@formily/react": ">=2",
     "antd": ">=4",
     "react": ">=16"
   },

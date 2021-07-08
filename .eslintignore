@@ -8,5 +8,5 @@ website
 gh-pages
 docs
 demo
-
-**/example
+packages/playground
+*.md

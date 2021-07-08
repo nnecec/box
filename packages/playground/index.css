@@ -1,0 +1,11 @@
+.search-box {
+  padding: 40px;
+  margin-bottom: 120px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+body {
+  padding: 80px;
+  background-color: #f6f6f6;
+}

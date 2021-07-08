@@ -1,39 +1,45 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Button } from 'antd'
+import React, { useMemo, useEffect, useState, useContext } from 'react'
+import { Button, ButtonProps } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import {
-  SchemaForm as FormilySchemaForm,
+  Form as FormilySchemaForm,
   FormButtonGroup,
+  FormLayout,
   Submit,
   Reset,
-  IAntdSchemaFormProps,
-  FormPathPattern,
-  createFormActions
+  FormProps
 } from '@formily/antd'
+import { createForm } from '@formily/core'
+
 import { isFunction } from 'lodash-es'
 import { observer } from 'mobx-react-lite'
 
 import { SearchBoxContext } from '@nnecec/search-box-core'
-import { components as presetComponents } from './helper'
+import { ISchema } from '@formily/react'
 
-let actions: any = createFormActions()
+import { SchemaField } from './helper'
 
-interface SchemaFormProps extends IAntdSchemaFormProps {
+interface SchemaFormProps extends FormProps {
   searchAfterReset?: boolean
-  collapsed?: FormPathPattern|null
+  collapsed?: any | null
+  schema: ISchema
+  onSubmit?: (values: any) => any
+  onReset?: (values: any) => any
+  submitButtonProps?: ButtonProps
 }
 
 export const SchemaForm = observer((props: SchemaFormProps) => {
   const {
     schema,
-    onReset,
     onSubmit,
+    onReset,
     searchAfterReset = true,
-    components,
     collapsed = null,
-    actions: outerActions,
-    ...restProps
+    form: externalForm,
+    submitButtonProps
   } = props
+
+  const form = useMemo(() => externalForm ?? createForm(), [])
 
   const [visible, setVisible] = useState(false)
 
@@ -41,27 +47,31 @@ export const SchemaForm = observer((props: SchemaFormProps) => {
   const { getParams, setParams, search } = searchBoxInstance
   const params = getParams()
 
-  actions = outerActions ?? actions
-
   useEffect(() => {
     Object.entries(params).forEach(([key, value]) => {
-      const state = actions.getFieldState(key, state => state)
+      const state = form.getFieldState(key, state => state)
       if (state) {
-        actions.setFieldState(key, state => { state.value = value })
+        form.setFieldState(key, state => { state.value = value })
       }
     })
   }, [])
 
   useEffect(() => {
     if (collapsed !== null) {
-      actions.setFieldState(collapsed, state => {
+      form.setFieldState(collapsed, state => {
         state.visible = visible
       })
     }
-  }, [collapsed, visible])
+  }, [collapsed, form, visible])
 
   function handleCollapsed () {
     setVisible(!visible)
+  }
+
+  function handleSubmit (values) {
+    setParams(values)
+    if (onSubmit) onSubmit(values)
+    search()
   }
 
   return (
@@ -70,38 +80,35 @@ export const SchemaForm = observer((props: SchemaFormProps) => {
       className="schema-form-box"
     >
       <FormilySchemaForm
-        schema={schema}
-        components={components || presetComponents}
-        labelCol={8}
-        wrapperCol={24}
-        {...restProps}
-        onSubmit={(values) => {
-          setParams(values)
-
-          if (onSubmit) onSubmit(values)
-          search()
-        }}
-        onReset={() => {
-          const { values } = actions.getFormState()
-          if (onReset && isFunction(onReset)) {
-            onReset()
-          }
-          setParams(values)
-
-          if (searchAfterReset) {
-            search()
-          }
-        }}
-        actions={actions}
+        form={form}
+        onAutoSubmit={handleSubmit}
       >
-        <FormButtonGroup align="end" style={{ justifyContent: 'flex-end' }}>
-          {collapsed !== null && (visible
-            ? <Button onClick={handleCollapsed} type="link" icon={<UpOutlined />}>收起</Button>
-            : <Button onClick={handleCollapsed} type="link" icon={<DownOutlined />}>展开</Button>)}
-          <Reset forceClear>还原</Reset>
-          <Submit>查询</Submit>
-        </FormButtonGroup>
+        <FormLayout labelCol={8} wrapperCol={16}>
+          <SchemaField schema={schema} />
+        </FormLayout>
+        {
+          <FormButtonGroup align="right">
+            {collapsed !== null && (visible
+              ? <Button onClick={handleCollapsed} type="link" icon={<UpOutlined />}>收起</Button>
+              : <Button onClick={handleCollapsed} type="link" icon={<DownOutlined />}>展开</Button>)
+            }
+
+            <Reset onResetValidateSuccess={() => {
+              const { values } = form.getFormState()
+              if (onReset && isFunction(onReset)) {
+                onReset()
+              }
+              setParams(values)
+
+              if (searchAfterReset) {
+                search()
+              }
+            }}>重置</Reset>
+            {submitButtonProps?.htmlType === 'button' ? <Button onClick={handleSubmit} type="primary">查询</Button> : <Submit>查询</Submit>}
+          </FormButtonGroup>
+        }
+
       </FormilySchemaForm>
-    </div>
+    </div >
   )
 })
