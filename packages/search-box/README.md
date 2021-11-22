@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-yarn add @nnecec/search-box antd @formily/antd @formily/core @formily/react
+yarn add @nnecec/search-box antd
 ```
 
 ## Usage

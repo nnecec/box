@@ -2,12 +2,12 @@ export default {
   css: {
     preprocessorOptions: {
       less: {
+        modifyVars: {
+          'root-entry-name': 'default',
+        },
         javascriptEnabled: true
       }
     }
-  },
-  optimizeDeps: {
-    include: ['@formily/antd']
   },
   resolve: {
     alias: [

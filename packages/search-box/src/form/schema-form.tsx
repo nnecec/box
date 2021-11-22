@@ -68,7 +68,8 @@ export const SchemaForm = observer((props: SchemaFormProps) => {
     setVisible(!visible)
   }
 
-  function handleSubmit (values) {
+  function handleSubmit () {
+    const { values } = form.getFormState()
     setParams(values)
     if (onSubmit) onSubmit(values)
     search()
